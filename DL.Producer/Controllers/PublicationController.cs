@@ -16,19 +16,6 @@ namespace DL.Producer.Controllers
             this._rabbitMqPublisher = rabbitMqPublisher;
         }
 
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            var person = new Student
-            {
-                Name = "Muna",
-                Email = "muna@adfenix.com",
-                Age = 28
-            };
-            this._rabbitMqPublisher.Publish(person, ExchangeType.Direct, "docker.test.exchange", "docker.test.queue");
-            return "value";
-        }
-
         [HttpPost]
         public void Post([FromBody]Student student)
         {

@@ -14,17 +14,17 @@ namespace DL.Consumer.Repository
         {
           _context = context;
         }
-        public async Task<List<StudentInfo>> GetStudentInfoAsync()
+        public async Task<List<StudentInfo>> GetAsync()
         {
             return await _context.StudentInfos.ToListAsync();
         }
 
-        public async Task<StudentInfo> GetStudentInfoAsync(int id)
+        public async Task<StudentInfo> GetAsync(int id)
         {
             return await _context.StudentInfos.SingleOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<StudentInfo> InsertStudentInfo(StudentInfo studentInfo)
+        public async Task<StudentInfo> Insert(StudentInfo studentInfo)
         {
             _context.Add(studentInfo);
             try
@@ -38,7 +38,7 @@ namespace DL.Consumer.Repository
             return studentInfo;
         }
 
-        public async Task<bool> UpdateStudentInfoAsync(StudentInfo studentInfo)
+        public async Task<bool> UpdateAsync(StudentInfo studentInfo)
         {
             _context.StudentInfos.Attach(studentInfo);
             _context.Entry(studentInfo).State = EntityState.Modified;
@@ -53,7 +53,7 @@ namespace DL.Consumer.Repository
             return false;
         }
 
-        public async Task<bool> DeleteStudentInfoAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
           
             var customer = await _context.StudentInfos.SingleOrDefaultAsync(c => c.Id == id);

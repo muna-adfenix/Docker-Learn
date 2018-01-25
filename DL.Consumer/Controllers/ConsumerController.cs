@@ -20,21 +20,21 @@ namespace DL.Consumer.Controllers
         [HttpGet]
         public async Task<IEnumerable<StudentInfo>> Get()
         {
-            var students = await studentInfoRepository.GetStudentInfoAsync();
+            var students = await studentInfoRepository.GetAsync();
             return students;
         }
 
         [HttpGet("{id}", Name = "Get")]
         public async Task<StudentInfo> Get(int id)
         {
-            var student = await studentInfoRepository.GetStudentInfoAsync(id);
+            var student = await studentInfoRepository.GetAsync(id);
             return student;
         }
 
         [HttpDelete("{id}", Name = "RemoveStudent")]
         public async Task<bool> RemoveStudent(int id)
         {
-            return await studentInfoRepository.DeleteStudentInfoAsync(id);
+            return await studentInfoRepository.DeleteAsync(id);
         }
     }
 }
